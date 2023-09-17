@@ -1,0 +1,122 @@
+{{ 'header.css' | asset_url | stylesheet_tag }}
+<div class="topbar">
+  <div class="top-section">
+    <div class="brand">{{ shop.name }}</div>
+    <div class="category-select">
+      <div class="dropdown">
+        <button
+          class="dropdown-button dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Shop By Categories
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          {% for collection in collections %}
+            <li>
+              <a class="dropdown-item" href="{{collection.url}}">
+                {{ collection.title }} ({{ collection.all_products_count }})</a
+              >
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="search-bar">
+      {% if settings.show_search %}
+        <form class="form-inline my-2 my-lg-0" action="{{ routes.search_url }}">
+          <input
+            class="search-input"
+            type="search"
+
+            placeholder="Search"
+            aria-label="Search"
+            name="q"
+            value="{{ search.terms | escape }}"
+          >
+          <button class="btn search-button" type="submit">Search</button>
+        </form>
+      {% endif %}
+    </div>
+    <div class="cart"></div>
+  </div>
+  <div class="bottom-section">
+    {% for link in linklists['main-menu'].links -%}
+      <div class="nav-link">
+        <a class="link" href="{{link.url}}">{{ link.title }}</a>
+      </div>
+    {%- endfor %}
+  </div>
+</div>
+
+<style>
+  .top-section {
+    background-color: {{section.settings.bg}};
+    color: {{section.settings.color}};
+  }
+  .bottom-section {
+    background-color: {{section.settings.bg-bottom}};
+    color: {{section.settings.color-bottom}};
+
+  }
+
+  .search-button {
+    background-color:{{section.settings.search-button-color}};
+    color: {{section.settings.search-button-text-color}};
+    width: 110px;
+  }
+
+  .nav-link a:link {
+    color: {{section.settings.color-bottom}};
+  }
+
+  .nav-link a {
+    color: {{section.settings.color-bottom}};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color Top Section",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "bg-bottom",
+      "label": "Background Color Botom Section",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color Top Section",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "color-bottom",
+      "label": "Text Color Bottom Section",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "search-button-color",
+      "label": "Search Button Color",
+      "default": "rgb(77, 77, 150)"
+    },
+    {
+      "type": "color",
+      "id": "search-button-text-color",
+      "label": "Search Button Text Color",
+      "default": "#ffffff"
+    }
+  ]
+}
+{% endschema %}

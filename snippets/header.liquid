@@ -1,0 +1,22 @@
+<header>
+  <h1>
+    {{ shop.name }}
+  </h1>
+
+  <ul>
+    {% for link in linklists['main-menu'].links -%}
+      <li>{{ link.title | link_to: link.url }}</li>
+    {%- endfor %}
+  </ul>
+  {% if settings.show_search %}
+    <form action="{{ routes.search_url }}">
+      <input
+        type="text"
+        placeholder="Search"
+        name="q"
+        value="{{ search.terms | escape }}"
+      >
+      <input type="submit" value="Search">
+    </form>
+  {% endif %}
+</header>
