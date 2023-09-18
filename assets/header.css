@@ -1,17 +1,11 @@
-.header {
-  color: #fff;
+.topbar {
+  width: 100%;
 }
+
 
 .top-section {
-  
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-
+  padding: 0 10px 0;
 }
-
 .bottom-section {
 
   width: 100%;
@@ -24,7 +18,7 @@
 .brand {
   font-size: 2rem;
   box-sizing: border-box;
-  padding-right: 20px;
+
 }
 
 .dropdown-button {
@@ -34,10 +28,10 @@
   padding: 10px;
 }
 
+
 .search-input {
   padding: 10px;
   border-radius: 5px;
-  margin: 10px;
   box-sizing: border-box;
   outline: none;
 }
@@ -47,11 +41,14 @@
   font-weight: 700;
   color: #fff;
   padding: 10px;
-  margin: 10px;
-  width: 110px;
   box-sizing: border-box;
 }
 
+.nav-button {
+  background-color: inherit;
+  color: inherit;
+  font-size: 2rem;
+}
 .nav-link{
   padding: 5px;
   margin: 0 5px 0;
@@ -60,6 +57,20 @@
 
 a:link {
   text-decoration: none;
+}
+
+.offcanvas {
+  color: black;
+}
+
+.side-nav-link{
+  padding: 5px;
+  margin: 0 5px 0;
+  box-sizing: border-box;
+}
+
+.side-nav-link a {
+  color: #000000;
 }
 
 

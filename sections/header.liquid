@@ -1,8 +1,17 @@
 {{ 'header.css' | asset_url | stylesheet_tag }}
 <div class="topbar">
-  <div class="top-section">
-    <div class="brand">{{ shop.name }}</div>
-    <div class="category-select">
+  <div class="top-section row">
+    <div class="brand col-10 col-md-3 text-start text-md-end mt-md-2">{{ shop.name }}</div>
+    <button
+      class="btn btn-lg nav-button col-2 d-block d-md-none text-end"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasExample"
+      aria-controls="offcanvasExample"
+    >
+      <i class="bi bi-list"></i>
+    </button>
+    <div class="category-select col-8 col-md-2 d-inline-block text-start text-md-center mt-md-2">
       <div class="dropdown">
         <button
           class="dropdown-button dropdown-toggle"
@@ -24,11 +33,11 @@
         </ul>
       </div>
     </div>
-    <div class="search-bar">
+    <div class="search-bar mt-2 mb-2 d-md-block d-none col-md-5">
       {% if settings.show_search %}
-        <form class="form-inline my-2 my-lg-0" action="{{ routes.search_url }}">
+        <form class="my-2 row" action="{{ routes.search_url }}">
           <input
-            class="search-input"
+            class="search-input col-10"
             type="search"
 
             placeholder="Search"
@@ -36,13 +45,48 @@
             name="q"
             value="{{ search.terms | escape }}"
           >
-          <button class="btn search-button" type="submit">Search</button>
+          <button class="btn search-button col-2" type="submit">Search</button>
         </form>
       {% endif %}
     </div>
-    <div class="cart"></div>
+    <a href="#" class="btn nav-button col-2 col-md-1  text-end mt-md-2" role="button" aria-pressed="true"
+      ><i class="bi bi-bag-fill"></i
+    ></a>
+    <a href="#" class="btn nav-button col-2 col-md-1 text-start mt-md-2" role="button" aria-pressed="true"
+      ><i class="bi bi-person-fill"></i
+    ></a>
+    <div class="search-bar d-md-none d-block col-12">
+      {% if settings.show_search %}
+        <form class="p-2 row" action="{{ routes.search_url }}">
+          <input
+            class="search-input col-10"
+            type="search"
+
+            placeholder="Search"
+            aria-label="Search"
+            name="q"
+            value="{{ search.terms | escape }}"
+          >
+          <button class="btn search-button col-2" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+      {% endif %}
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{ shop.name }}</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        {% for link in linklists['main-menu'].links -%}
+          <div class="side-nav-link">
+            <a class="link" href="{{link.url}}">{{ link.title }}</a>
+          </div>
+        {%- endfor %}
+      </div>
+    </div>
   </div>
-  <div class="bottom-section">
+  <div class="bottom-section d-md-flex d-none">
     {% for link in linklists['main-menu'].links -%}
       <div class="nav-link">
         <a class="link" href="{{link.url}}">{{ link.title }}</a>
@@ -65,7 +109,6 @@
   .search-button {
     background-color:{{section.settings.search-button-color}};
     color: {{section.settings.search-button-text-color}};
-    width: 110px;
   }
 
   .nav-link a:link {
@@ -85,37 +128,37 @@
       "type": "color",
       "id": "bg",
       "label": "Background Color Top Section",
-      "default": "#ffffff"
+      "default": "#33688C"
     },
     {
       "type": "color",
       "id": "bg-bottom",
       "label": "Background Color Botom Section",
-      "default": "#ffffff"
+      "default": "#37749F"
     },
     {
       "type": "color",
       "id": "color",
       "label": "Text Color Top Section",
-      "default": "#000000"
+      "default": "#FFFFFF"
     },
     {
       "type": "color",
       "id": "color-bottom",
       "label": "Text Color Bottom Section",
-      "default": "#000000"
+      "default": "#FFFFFF"
     },
     {
       "type": "color",
       "id": "search-button-color",
       "label": "Search Button Color",
-      "default": "rgb(77, 77, 150)"
+      "default": "#FAFDFF"
     },
     {
       "type": "color",
       "id": "search-button-text-color",
       "label": "Search Button Text Color",
-      "default": "#ffffff"
+      "default": "#33688C"
     }
   ]
 }
