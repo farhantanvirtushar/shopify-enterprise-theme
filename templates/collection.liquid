@@ -17,7 +17,7 @@
 
 {% paginate collection.products by 4 %}
   {% for product in collection.products %}
-    {% render 'product-short', product: product %}
+    {% render 'product-card', product: product %}
   {% endfor %}
 
   {{ paginate | default_pagination }}

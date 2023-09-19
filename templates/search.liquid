@@ -10,7 +10,7 @@
         <p>Article :</p>
         <a href="{{result.url}}">{{ result.title }}</a>
       {% elsif result.object_type == 'product' %}
-        {% render 'product-short', product: result %}
+        {% render 'product-card', product: result %}
       {% endif %}
 
       {% comment %} {{ result.content | highlight: search.terms }} {% endcomment %}

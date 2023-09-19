@@ -1,0 +1,9 @@
+.items-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-x: scroll;
+}
