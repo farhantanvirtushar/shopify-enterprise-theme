@@ -1,0 +1,13 @@
+.banner {
+  background-color: rgb(65, 65, 65);
+}
+
+.banner-image {
+    width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+    .banner {
+        height:  15rem !important;
+      }
+  }

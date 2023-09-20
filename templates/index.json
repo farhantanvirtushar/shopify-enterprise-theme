@@ -1,5 +1,8 @@
 {
   "sections": {
+    "carousel": {
+      "type": "carousel"
+    },
     "featured-collection": {
       "type": "featured-collection"
     },
@@ -10,5 +13,5 @@
       "type": "collections"
     }
   },
-  "order": ["featured-collection", "featured-products", "collections"]
+  "order": ["carousel", "featured-collection", "featured-products", "collections"]
 }
