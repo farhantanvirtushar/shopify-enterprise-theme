@@ -4,6 +4,8 @@
 
 
 .top-section {
+  margin: auto;
+  box-sizing: border-box;
   padding: 0 10px 0;
 }
 .bottom-section {
