@@ -1,0 +1,8 @@
+{{ 'collection-card.css' | asset_url | stylesheet_tag }}
+
+<div class="collection-card">
+  <img src="{{collection.featured_image | image_url}}" alt="collection Image" class="collection-image">
+  <h2 class="collection-title">{{ collection.title | link_to: collection.url }}</h2>
+
+  <p class="collection-price">{{ collection.price | money }}</p>
+</div>

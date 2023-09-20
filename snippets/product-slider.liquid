@@ -1,9 +1,5 @@
-{{ 'product-slider.css' | asset_url | stylesheet_tag }}
+{{ 'item-slider.css' | asset_url | stylesheet_tag }}
 <div class="items-row">
-  {% for product in productList %}
-    {% render 'product-card', product: product %}
-  {% endfor %}
-
   {% for product in productList %}
     {% render 'product-card', product: product %}
   {% endfor %}

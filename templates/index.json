@@ -1,10 +1,14 @@
 {
-  "sections" : {
-      "main":{
-          "type":"featured-collection"
-      }
+  "sections": {
+    "featured-collection": {
+      "type": "featured-collection"
+    },
+    "featured-products": {
+      "type": "featured-products"
+    },
+    "collections": {
+      "type": "collections"
+    }
   },
-  "order" : [
-      "main"
-  ]
+  "order": ["featured-collection", "featured-products", "collections"]
 }

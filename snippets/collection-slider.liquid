@@ -1,0 +1,6 @@
+{{ 'item-slider.css' | asset_url | stylesheet_tag }}
+<div class="items-row">
+  {% for collection in collectionList %}
+    {% render 'collection-card', collection: collection %}
+  {% endfor %}
+</div>

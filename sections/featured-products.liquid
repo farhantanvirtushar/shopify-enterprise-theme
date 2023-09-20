@@ -1,20 +1,20 @@
-{{ 'collections.css' | asset_url | stylesheet_tag }}
+{{ 'featured-products.css' | asset_url | stylesheet_tag }}
 <div class="product-slider">
   <div class="title">
     {{ section.settings.title }}
   </div>
 
-  {% render 'collection-slider', collectionList: collections %}
+  {% render 'product-slider', productList: section.settings.products %}
 </div>
 
 <style></style>
 
 {% schema %}
 {
-  "name": "All Collections",
+  "name": "Featured Products",
   "presets": [
     {
-      "name": "All Collections"
+      "name": "Featured Products"
     }
   ],
   "settings": [
@@ -22,7 +22,13 @@
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Shop All Categories"
+      "default": "Daily Deals"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Products",
+      "limit": 12
     },
     {
       "type": "color",
@@ -34,7 +40,7 @@
     {
       "type": "color",
       "id": "color",
-      "label": "Text Color ",
+      "label": "Text Color",
       "default": "#FFFFFF"
     }
   ]
