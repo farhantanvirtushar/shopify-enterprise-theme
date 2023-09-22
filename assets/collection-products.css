@@ -1,3 +1,8 @@
+.title {
+    text-align: center;
+    padding: 3rem;
+}
+
 .products {
   margin: auto;
   display: flex;
@@ -44,6 +49,9 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  border: 1px;
+  border-color: #dadada;
+  border-style: solid none solid none;
 }
 .product-sort {
   padding: 1rem;
@@ -54,4 +62,20 @@
 
 .toggle-filter-button {
   font-size: 2rem;
+}
+
+@media only screen and (min-width: 800px) {
+    .products-header {
+        padding: 1rem;
+    }
+  .product-sort {
+    padding: 0 1rem 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .label {
+    width: 5rem;
+  }
 }

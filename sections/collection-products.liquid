@@ -1,9 +1,11 @@
 {{ 'collection-products.css' | asset_url | stylesheet_tag }}
-<h1>{{ collection.title }}</h1>
+<div class="title">
+  <h1>{{ collection.title }}</h1>
+</div>
 
 <div class="products-header">
   <div class="product-sort">
-    <span>Sort By </span>
+    <div class="label">Sort By</div>
     <select id="sort-by" class="form-select sort-option-select">
       {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
 
@@ -20,6 +22,15 @@
     </select>
   </div>
   <div>
+    {% comment %}
+      <div class="btn-group" role="group" aria-label="List type button group">
+        <input type="radio" class="btn-check" name="list-type" id="grid" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="grid"><i class="bi bi-grid-fill"></i></label>
+
+        <input type="radio" class="btn-check" name="list-type" id="list" autocomplete="off">
+        <label class="btn btn-outline-primary" for="list"><i class="bi bi-list-ul"></i></label>
+      </div>
+    {% endcomment %}
     <button
       class="btn btn-lg toggle-filter-button d-blcok d-md-none"
       type="button"
