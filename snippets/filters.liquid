@@ -1,21 +1,21 @@
 <div class="accordion filters" id="accordionExample">
   <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
+    <h2 class="accordion-header" id="headingPrice">
       <button
         class="accordion-button"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#collapseOne"
+        data-bs-target="#collapsePrice"
         aria-expanded="true"
-        aria-controls="collapseOne"
+        aria-controls="collapsePrice"
       >
         Price
       </button>
     </h2>
     <div
-      id="collapseOne"
+      id="collapsePrice"
       class="accordion-collapse collapse show"
-      aria-labelledby="headingOne"
+      aria-labelledby="headingPrice"
     >
       <div class="accordion-body expand">
         <div class="row" style="margin: auto;">
@@ -29,23 +29,57 @@
       </div>
     </div>
   </div>
+
   <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
+    <h2 class="accordion-header" id="headingAvailability">
       <button
         class="accordion-button"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#collapseTwo"
+        data-bs-target="#collapseAvailability"
         aria-expanded="true"
-        aria-controls="collapseTwo"
+        aria-controls="collapseAvailability"
+      >
+        Availability
+      </button>
+    </h2>
+    <div
+      id="collapseAvailability"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingAvailability"
+    >
+      <div class="accordion-body expand">
+        <div class="checkbox-group">
+          <div class="form-check">
+            <input class="form-check-input availability-input in-stock" type="checkbox" value="1" id="in-stock">
+            <label class="form-check-label" for="in-stock"> In Stock </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input availability-input out-of-stock" type="checkbox" value="0" id="out-of-stock">
+            <label class="form-check-label" for="out-of-stock"> Out Of Stock </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTypes">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTypes"
+        aria-expanded="true"
+        aria-controls="collapseTypes"
       >
         Types
       </button>
     </h2>
     <div
-      id="collapseTwo"
+      id="collapseTypes"
       class="accordion-collapse collapse show"
-      aria-labelledby="headingTwo"
+      aria-labelledby="headingTypes"
     >
       <div class="accordion-body expand">
         <div class="checkbox-group">
@@ -60,39 +94,6 @@
               <label class="form-check-label" for="{{type}}"> {{ type }} </label>
             </div>
           {% endfor %}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button
-        class="accordion-button"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapseThree"
-        aria-expanded="true"
-        aria-controls="collapseThree"
-      >
-        Availability
-      </button>
-    </h2>
-    <div
-      id="collapseThree"
-      class="accordion-collapse collapse show"
-      aria-labelledby="headingThree"
-    >
-      <div class="accordion-body expand">
-        <div class="checkbox-group">
-          <div class="form-check">
-            <input class="form-check-input availability-input in-stock" type="checkbox" value="1" id="in-stock">
-            <label class="form-check-label" for="in-stock"> In Stock </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input availability-input out-of-stock" type="checkbox" value="0" id="out-of-stock">
-            <label class="form-check-label" for="out-of-stock"> Out Of Stock </label>
-          </div>
         </div>
       </div>
     </div>

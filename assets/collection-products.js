@@ -1,24 +1,6 @@
 $(document).ready(function () {
 
-  $(".page-index").each(function () {
-    var link = $(this).attr("href");
-    var url_prefix = location.pathname +"?"+ location.search.substr(1).replace(/&page=\d/,"");
-    $(this).attr('href', url_prefix + link)
-  })
-
-  $(".next-page").each(function () {
-    var currentPage = parseInt($(this).attr("href"));
-    var link = "&page="+ (currentPage+1)
-    var url_prefix = location.pathname +"?" + location.search.substr(1).replace(/&page=\d/,"");
-    $(this).attr('href', url_prefix + link)
-  })
-
-  $(".previous-page").each(function () {
-    var currentPage = parseInt($(this).attr("href"));
-    var link = "&page="+ (currentPage-1)
-    var url_prefix = location.pathname +"?" + location.search.substr(1).replace(/&page=\d/,"");
-    $(this).attr('href', url_prefix + link)
-  })
+  
 
 
 
@@ -38,6 +20,29 @@ $(document).ready(function () {
     }
   }
 
+
+  $(".page-index").each(function () {
+    var pageIndex = $(this).attr("href");
+    var queryParams = {...Shopify.queryParams};
+    queryParams["page"] = pageIndex;
+    $(this).attr('href', location.pathname+"?"+new URLSearchParams(queryParams).toString())
+  })
+
+  $(".next-page").each(function () {
+    var currentPage = parseInt($(this).attr("href"));
+    var pageIndex =  (currentPage+1).toString()
+    var queryParams = {...Shopify.queryParams};
+    queryParams["page"] = pageIndex;
+    $(this).attr('href', location.pathname+"?"+new URLSearchParams(queryParams).toString())
+  })
+
+  $(".previous-page").each(function () {
+    var currentPage = parseInt($(this).attr("href"));
+    var pageIndex =  (currentPage-1).toString()
+    var queryParams = {...Shopify.queryParams};
+    queryParams["page"] = pageIndex;
+    $(this).attr('href', location.pathname+"?"+new URLSearchParams(queryParams).toString())
+  })
   
 
   $("#sort-by").on("change", function (e) {
