@@ -19,104 +19,32 @@
       {% endfor %}
     </select>
   </div>
+  <div>
+    <button
+      class="btn btn-lg toggle-filter-button d-blcok d-md-none"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasFilters"
+      aria-controls="offcanvasFilters"
+    >
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
 </div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFilters" aria-labelledby="offcanvasFiltersLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasFiltersLabel">Filters</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    {% render 'filters', collection: collection %}
+  </div>
+</div>
+
 <div class="row" style="margin: auto;">
   <div class="col-md-2 d-none d-md-block">
-    <div class="accordion filters" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button
-            class="accordion-button"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseOne"
-            aria-expanded="true"
-            aria-controls="collapseOne"
-          >
-            Price
-          </button>
-        </h2>
-        <div
-          id="collapseOne"
-          class="accordion-collapse collapse show"
-          aria-labelledby="headingOne"
-        >
-          <div class="accordion-body expand">
-            <div class="row" style="margin: auto;">
-              <div class="col-6 p-1">
-                <input class="price-input" type="number" name="min-price" id="min-price" placeholder="From">
-              </div>
-              <div class="col-6 p-1">
-                <input class="price-input" type="number" name="max-price" id="max-price" placeholder="To">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-          <button
-            class="accordion-button"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseTwo"
-            aria-expanded="true"
-            aria-controls="collapseTwo"
-          >
-            Types
-          </button>
-        </h2>
-        <div
-          id="collapseTwo"
-          class="accordion-collapse collapse show"
-          aria-labelledby="headingTwo"
-        >
-          <div class="accordion-body expand">
-            <div class="checkbox-group">
-              {% for type in collection.all_types %}
-                <div class="form-check">
-                  <input class="form-check-input product-type-input" type="checkbox" value="" id="{{type}}">
-                  <label class="form-check-label" for="{{type}}"> {{ type }} </label>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-          <button
-            class="accordion-button"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseThree"
-            aria-expanded="true"
-            aria-controls="collapseThree"
-          >
-            Availability
-          </button>
-        </h2>
-        <div
-          id="collapseThree"
-          class="accordion-collapse collapse show"
-          aria-labelledby="headingThree"
-        >
-          <div class="accordion-body expand">
-            <div class="checkbox-group">
-              <div class="form-check">
-                <input class="form-check-input availability-input" type="checkbox" value="" id="in-stock">
-                <label class="form-check-label" for="in-stock"> In Stock </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input availability-input" type="checkbox" value="" id="out-of-stock">
-                <label class="form-check-label" for="out-of-stock"> Out Of Stock </label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    {% render 'filters', collection: collection %}
   </div>
   <div class="col-12 col-md-10">
     {% paginate collection.products by 4 %}
@@ -136,6 +64,7 @@
 <style></style>
 
 <script src="{{ 'collection-products.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'filters.js' | asset_url }}" defer="defer"></script>
 <script></script>
 
 {% schema %}

@@ -6,8 +6,8 @@
       class="btn btn-lg nav-button col-2 d-block d-md-none text-end"
       type="button"
       data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasExample"
-      aria-controls="offcanvasExample"
+      data-bs-target="#offcanvasMainMenu"
+      aria-controls="offcanvasMainMenu"
     >
       <i class="bi bi-list"></i>
     </button>
@@ -72,9 +72,14 @@
       {% endif %}
     </div>
 
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="offcanvasMainMenu"
+      aria-labelledby="offcanvasMainMenuLabel"
+    >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{ shop.name }}</h5>
+        <h5 class="offcanvas-title" id="offcanvasMainMenuLabel">{{ shop.name }}</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
