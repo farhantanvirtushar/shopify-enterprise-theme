@@ -1,4 +1,27 @@
 $(document).ready(function () {
+
+  $(".page-index").each(function () {
+    var link = $(this).attr("href");
+    var url_prefix = location.pathname +"?"+ location.search.substr(1).replace(/&page=\d/,"");
+    $(this).attr('href', url_prefix + link)
+  })
+
+  $(".next-page").each(function () {
+    var currentPage = parseInt($(this).attr("href"));
+    var link = "&page="+ (currentPage+1)
+    var url_prefix = location.pathname +"?" + location.search.substr(1).replace(/&page=\d/,"");
+    $(this).attr('href', url_prefix + link)
+  })
+
+  $(".previous-page").each(function () {
+    var currentPage = parseInt($(this).attr("href"));
+    var link = "&page="+ (currentPage-1)
+    var url_prefix = location.pathname +"?" + location.search.substr(1).replace(/&page=\d/,"");
+    $(this).attr('href', url_prefix + link)
+  })
+
+
+
   Shopify.queryParams = {};
 
   // Preserve existing query parameters
