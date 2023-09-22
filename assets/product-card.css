@@ -6,7 +6,6 @@
   transition: 0.3s;
   text-align: center;
   padding: 10px;
-  width: 200px;
   height: 320px;
   flex-shrink: 0;
 }
@@ -28,4 +27,17 @@
   font-size: 1rem;
   font-weight: bold;
   margin: 10px 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .product-card {
+    margin: 10px 5px 10px;
+    width: 172px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .product-card {
+    width: 200px;
+  }
 }
