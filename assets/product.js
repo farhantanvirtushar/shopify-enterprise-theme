@@ -2,7 +2,9 @@ $(document).ready(function () {
   var variantName = "";
   var variantId = 0;
 
-  getSelectedVariant();
+  var variant = getSelectedVariant();
+  console.log(variant.id);
+  $("#product-id").val(variant.id);
 
   function getSelectedVariant() {
     var selectedOptionArray = [];
@@ -31,6 +33,8 @@ $(document).ready(function () {
 
     var variant = getSelectedVariant();
 
+    $("#product-id").val(variant.id);
+
     if(variant.featured_image){
 
         $("#featured-image").attr("src", variant.featured_image.src);
@@ -43,5 +47,18 @@ $(document).ready(function () {
   $(".image-small").on("click", function(){
 
     $("#featured-image").attr("src", this.src);
+  })
+
+  $("#increment-quantity").on("click", function(){
+    var quantity =  parseInt( $("#quantity-input").val());
+    $("#quantity-input").val(quantity+1);
+  })
+
+  $("#decrement-quantity").on("click", function(){
+    var quantity =  parseInt( $("#quantity-input").val());
+    if(quantity-1 >0) {
+        $("#quantity-input").val(quantity-1);
+    }
+    
   })
 });

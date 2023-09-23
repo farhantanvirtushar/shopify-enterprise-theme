@@ -1,68 +1,80 @@
 {{ 'product.css' | asset_url | stylesheet_tag }}
 
-<div class="row" style="margin: auto;">
-  <div class="image-container col-12 col-md-6">
-    <div class="featured-image-container">
-      <img class="image-large" id="featured-image" src="{{product.featured_image | image_url}}" alt="">
-    </div>
+<div class="container">
+  <div class="row" style="margin: auto;">
+    <div class="image-container col-12 col-md-6">
+      <div class="featured-image-container">
+        <img class="image-large" id="featured-image" src="{{product.featured_image | image_url}}" alt="">
+      </div>
 
-    <div class="images-row">
-      {% for image in product.images %}
-        <div class="thumbnail-image">
-          <img class="image-small" src="{{image | image_url}}" alt="">
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <div class="product-description col-12 col-md-6">
-    <div class="title">
-      <h1>{{ product.title }}</h1>
-    </div>
-    <div class="price" id="price">{{ product.price | money }}</div>
-    <div class="options">
-      {% if product.options.size > 0 -%}
-        {% for option in product.options -%}
-          <div class="option-name">{{ option }}</div>
-          <div class="button-group">
-            {%- for value in product.options_by_name[option].values %}
-              <div class="radio-button">
-                <input
-                  type="radio"
-                  class="btn-check product-option"
-                  name="option_{{option}}"
-                  value="{{value}}"
-                  id="{{option}}_{{value}}"
-                  autocomplete="off"
-                  {% if value == product.options_by_name[option].selected_value %}
-                    checked
-                  {% endif %}
-                >
-                <label class="btn btn-outline-success" for="{{option}}_{{value}}">{{ value }}</label>
-              </div>
-            {%- endfor %}
+      <div class="images-row">
+        {% for image in product.images %}
+          <div class="thumbnail-image">
+            <img class="image-small" src="{{image | image_url}}" alt="">
           </div>
-        {%- endfor %}
-      {%- endif %}
+        {% endfor %}
+      </div>
     </div>
-    <div class="description">
-      {{ product.description }}
+
+    <div class="product-description col-12 col-md-6">
+      <div class="title">
+        <h1>{{ product.title }}</h1>
+      </div>
+      <div class="price" id="price">{{ product.price | money }}</div>
+
+      {% form 'product', product %}
+        <input type="text" name="id" hidden id="product-id">
+
+        <div class="input-row" style="margin: auto;">
+          <div class="quantity-text">Quantity :</div>
+          <div class="input-button-group">
+            <button class="btn btn-secondary quantity-change" type="button" id="increment-quantity">
+              <i class="bi bi-plus"></i>
+            </button>
+
+            <input type="number" name="quantity" value="1" class="quantity-input" id="quantity-input">
+
+            <button class="btn btn-secondary quantity-change" type="button" id="decrement-quantity">
+              <i class="bi bi-dash"></i>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn btn-secondary add-cart" type="submit">
+          <i class="bi bi-cart-plus"></i>{{ 'general.add_to_cart' | translate }}
+        </button>
+      {% endform %}
+      <div class="options">
+        {% if product.options.size > 0 -%}
+          {% for option in product.options -%}
+            <div class="option-name">{{ option }}</div>
+            <div class="button-group">
+              {%- for value in product.options_by_name[option].values %}
+                <div class="radio-button">
+                  <input
+                    type="radio"
+                    class="btn-check product-option"
+                    name="option_{{option}}"
+                    value="{{value}}"
+                    id="{{option}}_{{value}}"
+                    autocomplete="off"
+                    {% if value == product.options_by_name[option].selected_value %}
+                      checked
+                    {% endif %}
+                  >
+                  <label class="btn btn-outline-success" for="{{option}}_{{value}}">{{ value }}</label>
+                </div>
+              {%- endfor %}
+            </div>
+          {%- endfor %}
+        {%- endif %}
+      </div>
+      <div class="description">
+        {{ product.description }}
+      </div>
     </div>
   </div>
 </div>
-
-<p>{{ product.price | money }}</p>
-
-{% form 'product', product %}
-  <select name="id">
-    {% for variant in product.variants %}
-      <option value="{{variant.id}}">{{ variant.title }} - {{ variant.price | money }}</option>
-    {% endfor %}
-  </select>
-  <input type="text" name="quantity" min="1" value="1">
-
-  <button type="submit">{{ 'general.add_to_cart' | translate }}</button>
-{% endform %}
 
 <style></style>
 
