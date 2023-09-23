@@ -32,7 +32,7 @@ $(document).ready(function () {
     var variant = getSelectedVariant();
 
     if(variant.featured_image){
-        console.log(variant.featured_image.src);
+
         $("#featured-image").attr("src", variant.featured_image.src);
     }
     

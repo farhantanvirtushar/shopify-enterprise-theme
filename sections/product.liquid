@@ -75,7 +75,12 @@
 
   var variants = {{product.variants  | json}}
 
-  console.log(variants);
+  {% for variant in product.variants %}
+    {% assign index = forloop.index | minus: 1 %}
+
+    variants[{{index}}].price = "{{variant.price | money}}";
+  {% endfor %}
+
 
   {% for option in product.options -%}
 
@@ -84,10 +89,6 @@
     options_values["option_{{option}}"] = "{{ product.options_by_name[option].selected_value }}";
 
   {%- endfor %}
-
-  function updatePrice(price){
-    console.log ( );
-  }
 </script>
 
 {% schema %}
