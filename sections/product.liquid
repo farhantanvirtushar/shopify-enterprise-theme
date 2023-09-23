@@ -1,0 +1,122 @@
+{{ 'product.css' | asset_url | stylesheet_tag }}
+
+<div class="row" style="margin: auto;">
+  <div class="image-container col-12 col-md-6">
+    <div class="featured-image-container">
+      <img class="image-large" id="featured-image" src="{{product.featured_image | image_url}}" alt="">
+    </div>
+
+    <div class="images-row">
+      {% for image in product.images %}
+        <div class="thumbnail-image">
+          <img class="image-small" src="{{image | image_url}}" alt="">
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="product-description col-12 col-md-6">
+    <div class="title">
+      <h1>{{ product.title }}</h1>
+    </div>
+    <div class="price" id="price">{{ product.price | money }}</div>
+    <div class="options">
+      {% if product.options.size > 0 -%}
+        {% for option in product.options -%}
+          <div class="option-name">{{ option }}</div>
+          <div class="button-group">
+            {%- for value in product.options_by_name[option].values %}
+              <div class="radio-button">
+                <input
+                  type="radio"
+                  class="btn-check product-option"
+                  name="option_{{option}}"
+                  value="{{value}}"
+                  id="{{option}}_{{value}}"
+                  autocomplete="off"
+                  {% if value == product.options_by_name[option].selected_value %}
+                    checked
+                  {% endif %}
+                >
+                <label class="btn btn-outline-success" for="{{option}}_{{value}}">{{ value }}</label>
+              </div>
+            {%- endfor %}
+          </div>
+        {%- endfor %}
+      {%- endif %}
+    </div>
+    <div class="description">
+      {{ product.description }}
+    </div>
+  </div>
+</div>
+
+<p>{{ product.price | money }}</p>
+
+{% form 'product', product %}
+  <select name="id">
+    {% for variant in product.variants %}
+      <option value="{{variant.id}}">{{ variant.title }} - {{ variant.price | money }}</option>
+    {% endfor %}
+  </select>
+  <input type="text" name="quantity" min="1" value="1">
+
+  <button type="submit">{{ 'general.add_to_cart' | translate }}</button>
+{% endform %}
+
+<style></style>
+
+<script src="{{ 'product.js' | asset_url }}" defer="defer"></script>
+
+<script>
+  var options = [];
+
+  var options_values = {};
+
+  var variants = {{product.variants  | json}}
+
+  console.log(variants);
+
+  {% for option in product.options -%}
+
+    options.push("option_{{ option}}")
+
+    options_values["option_{{option}}"] = "{{ product.options_by_name[option].selected_value }}";
+
+  {%- endfor %}
+
+  function updatePrice(price){
+    console.log ( );
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product Description",
+  "presets": [
+    {
+      "name": "Product Description"
+    }
+  ],
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color",
+      "default": "#33688C"
+    },
+
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color ",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}
