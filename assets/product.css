@@ -81,7 +81,7 @@
 }
 .quantity-input {
   width: 40%;
-  border-radius: 25px;
+  border-radius: 5px;
   border: 2px solid #bbbbbb;
   box-sizing: border-box;
   padding: 5px 15px 5px;
@@ -95,11 +95,36 @@
   
 }
 
-.add-cart {
+.add-cart, .buy-now {
   margin-top: 1rem;
   width: 21rem;
 }
 
+.modal-body {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-cart-message {
+  font-size: 1.5rem;
+  margin: 2rem 0 2rem;
+}
+.message-icon {
+  font-size: 5rem;
+  padding: 1rem;
+}
+
+#icon-success {
+  color: #32bd16;
+}
+#icon-failure {
+  color: rgb(212, 40, 40);
+}
+.modal-footer {
+  justify-content: center !important;
+}
 @media only screen and (max-width: 800px) {
   .featured-image-container {
     height: 14rem;

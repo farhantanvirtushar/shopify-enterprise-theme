@@ -22,28 +22,6 @@
       </div>
       <div class="price" id="price">{{ product.price | money }}</div>
 
-      {% form 'product', product %}
-        <input type="text" name="id" hidden id="product-id">
-
-        <div class="input-row" style="margin: auto;">
-          <div class="quantity-text">Quantity :</div>
-          <div class="input-button-group">
-            <button class="btn btn-secondary quantity-change" type="button" id="increment-quantity">
-              <i class="bi bi-plus"></i>
-            </button>
-
-            <input type="number" name="quantity" value="1" class="quantity-input" id="quantity-input">
-
-            <button class="btn btn-secondary quantity-change" type="button" id="decrement-quantity">
-              <i class="bi bi-dash"></i>
-            </button>
-          </div>
-        </div>
-
-        <button class="btn btn-secondary add-cart" type="submit">
-          <i class="bi bi-cart-plus"></i>{{ 'general.add_to_cart' | translate }}
-        </button>
-      {% endform %}
       <div class="options">
         {% if product.options.size > 0 -%}
           {% for option in product.options -%}
@@ -69,8 +47,50 @@
           {%- endfor %}
         {%- endif %}
       </div>
+
+      {% form 'product', product %}
+        <input type="text" name="id" hidden id="product-id">
+
+        <div class="input-row" style="margin: auto;">
+          <div class="quantity-text">Quantity</div>
+          <div class="input-button-group">
+            <button class="btn btn-secondary quantity-change" type="button" id="increment-quantity">
+              <i class="bi bi-plus"></i>
+            </button>
+
+            <input type="number" name="quantity" value="1" class="quantity-input" id="quantity-input">
+
+            <button class="btn btn-secondary quantity-change" type="button" id="decrement-quantity">
+              <i class="bi bi-dash"></i>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn btn-secondary add-cart" id="add-to-cart" type="submit">
+          <i class="bi bi-cart-plus"></i>{{ 'general.add_to_cart' | translate }}
+        </button>
+
+        <button class="btn btn-secondary buy-now" type="submit">Buy Now</button>
+      {% endform %}
       <div class="description">
         {{ product.description }}
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="add-cart-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="add-cart-message">Add to cart response</div>
+          <div class="message-icon">
+            <i class="bi bi-check-circle" id="icon-success"></i>
+            <i class="bi bi-x-circle failed" id="icon-failure"></i>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Continue Shopping</button>
+        </div>
       </div>
     </div>
   </div>

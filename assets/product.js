@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  $('#add-cart-modal').modal('hide');
   var variantName = "";
   var variantId = 0;
 
@@ -61,4 +62,33 @@ $(document).ready(function () {
     }
     
   })
+
+  $('#add-to-cart').on('click', function(event) {
+    event.preventDefault(); // prevent default form submission
+
+    
+    $.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: $('form[action$="/cart/add"]').serialize(),
+      dataType: 'json',
+      success: function(data) {
+        $(".add-cart-message").text("Added To Cart");
+        $("#icon-success").show();
+        $("#icon-failure").hide();
+        $('#add-cart-modal').modal('show');
+
+        console.log(data);
+      },
+      error: function(e) {
+        $(".add-cart-message").text("Failed To Add");
+        $("#icon-success").show();
+        $("#icon-failure").hide();
+        $('#add-cart-modal').modal('show');
+
+        console.log(e);
+      }
+    });
+  
+  });
 });
