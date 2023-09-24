@@ -79,7 +79,7 @@ $(document).ready(function () {
         $('#add-cart-modal').modal('show');
 
 
-        var quantity = data.quantity;
+        var quantity =  parseInt( $("#quantity-input").val());
 
         // calling global methods getCartItemCount() & setCartItemCount(count) in global.js
         var cartItemCount = getCartItemCount();

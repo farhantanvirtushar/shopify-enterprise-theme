@@ -1,0 +1,116 @@
+{{ 'cart.css' | asset_url | stylesheet_tag }}
+
+<div class="container">
+  <h1>Cart</h1>
+  <div class="row" style="margin: auto;">
+    <div class="col-12 col-md-8"></div>
+    <div>
+      {% form 'cart', cart %}
+        {% for item in cart.items %}
+          <div class="cart-item">
+            <div class="row" style="margin: auto;">
+              <div class="col-5 col-md-3">
+                <div class="image-container">
+                  <img class="product-image" src="{{item.image | image_url}}" alt="">
+                </div>
+              </div>
+              <div class="col-7 col-md-9">
+                <div class="item-title">{{ item.title | link_to: item.url }}</div>
+                <p>{{ item.price | money }}</p>
+                <div class="item-action-row">
+                  <div class="row-group">
+                    <div>
+                      <div>Total</div>
+                      <div class="total-price">{{ item.final_line_price | money }}</div>
+                    </div>
+                    <div class="input-row" style="margin: auto;">
+                      <div class="input-button-group">
+                        <button class="btn btn-secondary quantity-change" type="button" id="increment-quantity">
+                          <i class="bi bi-plus"></i>
+                        </button>
+
+                        <input
+                          type="number"
+                          name="quantity"
+                          value="{{item.quantity}}"
+                          class="quantity-input"
+                          id="quantity-input"
+                        >
+
+                        <button class="btn btn-secondary quantity-change" type="button" id="decrement-quantity">
+                          <i class="bi bi-dash"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row-group">
+                    <button class="btn btn-outline-danger delete" type="button">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>Quantity : {{ item.quantity }}</div>
+            <br>
+            <a href="{{item.url_to_remove}}">Remove</a>
+          </div>
+        {% endfor %}
+
+        <p>Total : {{ cart.total_price | money }}</p>
+        <button type="submit" name="checkout">Checkout</button>
+      {% endform %}
+    </div>
+    <div class="col-12 col-md-4"></div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="add-cart-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="add-cart-message">Add to cart response</div>
+          <div class="message-icon">
+            <i class="bi bi-check-circle" id="icon-success"></i>
+            <i class="bi bi-x-circle failed" id="icon-failure"></i>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style></style>
+
+<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+
+<script></script>
+
+{% schema %}
+{
+  "name": "Shopping Cart",
+  "presets": [
+    {
+      "name": "Shopping Cart"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color",
+      "default": "#33688C"
+    },
+
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color ",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}
