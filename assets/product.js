@@ -78,12 +78,23 @@ $(document).ready(function () {
         $("#icon-failure").hide();
         $('#add-cart-modal').modal('show');
 
+
+        var quantity = data.quantity;
+
+        // calling global methods getCartItemCount() & setCartItemCount(count) in global.js
+        var cartItemCount = getCartItemCount();
+
+        console.log(cartItemCount)
+        console.log(quantity);
+        
+        updateCartItemCount(quantity + cartItemCount)
+
         console.log(data);
       },
-      error: function(e) {
-        $(".add-cart-message").text("Failed To Add");
-        $("#icon-success").show();
-        $("#icon-failure").hide();
+      error: function(xhr, ajaxOptions, thrownError) {
+        $(".add-cart-message").text(JSON.parse(xhr.responseText).description);
+        $("#icon-success").hide();
+        $("#icon-failure").show();
         $('#add-cart-modal').modal('show');
 
         console.log(e);

@@ -2,6 +2,10 @@ body {
     width: 100%;
 }
 
+.badge {
+  font-size: 0.8rem;
+  top: 10 !important;
+}
 
 ::-webkit-scrollbar {
     height: 4px; 

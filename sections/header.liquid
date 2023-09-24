@@ -49,9 +49,21 @@
         </form>
       {% endif %}
     </div>
-    <a href="#" class="btn nav-button col-2 col-md-1  text-end mt-md-2" role="button" aria-pressed="true"
-      ><i class="bi bi-bag-fill"></i
-    ></a>
+    <a
+      href="/cart"
+      class="btn nav-button col-2 col-md-1  text-end mt-md-2 position-relative"
+      role="button"
+      aria-pressed="true"
+    >
+      <i class="bi bi-bag-fill"></i>
+      <span
+        class="position-absolute start-100 translate-middle badge rounded-pill bg-danger badge"
+        id="cart-item-count"
+      >
+        {{ cart.item_count }}
+        <span class="visually-hidden">unread messages</span>
+      </span>
+    </a>
     <a href="#" class="btn nav-button col-2 col-md-1 text-start mt-md-2" role="button" aria-pressed="true"
       ><i class="bi bi-person-fill"></i
     ></a>
