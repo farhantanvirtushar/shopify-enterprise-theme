@@ -48,6 +48,10 @@ a {
 .quantity-text {
   margin-right: 1rem;
 }
+
+.total-price {
+  color:#dc3545;
+}
 .quantity-input {
   width: 40%;
   border-radius: 5px;

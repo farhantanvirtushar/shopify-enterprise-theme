@@ -4,7 +4,7 @@
   <div class="title"><h1>Shopping Cart</h1></div>
 
   <div class="row" style="margin: auto;">
-    <div class="col-12 col-md-9">
+    <div class="col-12 col-md-8 col-lg-9">
       {% form 'cart', cart %}
         {% for item in cart.items %}
           <div class="cart-item" id="cart_item_{{item.id}}">
@@ -19,13 +19,18 @@
                 <p>{{ item.price | money }}</p>
                 <div class="item-action-row">
                   <div class="row-group">
-                    <div>
-                      <div>Total</div>
-                      <div class="total-price">{{ item.final_line_price | money }}</div>
+                    <div class="card-row">
+                      <div style="margin-right: 1rem;">Total</div>
+                      <div class="value total-price">{{ item.final_line_price | money }}</div>
                     </div>
                     <div class="input-row" style="margin: auto;">
-                      <div class="input-button-group">
-                        <button class="btn btn-secondary quantity-change" type="button" id="increment-quantity">
+                      <div class="input-button-group" value="{{item.id}}">
+                        <button
+                          class="btn btn-secondary quantity-change increment-quantity"
+                          value="{{item.id}}"
+                          type="button"
+                          id="increment-quantity_{{item.id}}"
+                        >
                           <i class="bi bi-plus"></i>
                         </button>
 
@@ -34,17 +39,22 @@
                           name="quantity"
                           value="{{item.quantity}}"
                           class="quantity-input"
-                          id="quantity-input"
+                          id="quantity-input_{{item.id}}"
                         >
 
-                        <button class="btn btn-secondary quantity-change" type="button" id="decrement-quantity">
+                        <button
+                          class="btn btn-secondary quantity-change decrement-quantity"
+                          value="{{item.id}}"
+                          type="button"
+                          id="decrement-quantity_{{item.id}}"
+                        >
                           <i class="bi bi-dash"></i>
                         </button>
                       </div>
                     </div>
                   </div>
                   <div class="row-group">
-                    <button class="btn btn-outline-danger delete" value="{{item.id}}" type="button">
+                    <button class="btn btn-danger delete" value="{{item.id}}" type="button">
                       <i class="bi bi-trash"></i>
                     </button>
                   </div>
@@ -56,7 +66,7 @@
       {% endform %}
     </div>
 
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-4 col-lg-3">
       <div class="checkout-card">
         <div class="card-title">Checkout</div>
         <div class="card-row">
@@ -76,7 +86,7 @@
     </div>
   </div>
 
-  <div class="modal" tabindex="-1" id="add-cart-modal">
+  <div class="modal" tabindex="-1" id="cart-modal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
