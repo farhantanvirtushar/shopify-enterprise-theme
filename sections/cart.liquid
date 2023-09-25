@@ -1,13 +1,13 @@
 {{ 'cart.css' | asset_url | stylesheet_tag }}
 
-<div class="container">
-  <h1>Cart</h1>
+<div class="container-fluid">
+  <div class="title"><h1>Shopping Cart</h1></div>
+
   <div class="row" style="margin: auto;">
-    <div class="col-12 col-md-8"></div>
-    <div>
+    <div class="col-12 col-md-9">
       {% form 'cart', cart %}
         {% for item in cart.items %}
-          <div class="cart-item">
+          <div class="cart-item" id="cart_item_{{item.id}}">
             <div class="row" style="margin: auto;">
               <div class="col-5 col-md-3">
                 <div class="image-container">
@@ -44,32 +44,43 @@
                     </div>
                   </div>
                   <div class="row-group">
-                    <button class="btn btn-outline-danger delete" type="button">
+                    <button class="btn btn-outline-danger delete" value="{{item.id}}" type="button">
                       <i class="bi bi-trash"></i>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div>Quantity : {{ item.quantity }}</div>
-            <br>
-            <a href="{{item.url_to_remove}}">Remove</a>
           </div>
         {% endfor %}
-
-        <p>Total : {{ cart.total_price | money }}</p>
-        <button type="submit" name="checkout">Checkout</button>
       {% endform %}
     </div>
-    <div class="col-12 col-md-4"></div>
+
+    <div class="col-12 col-md-3">
+      <div class="checkout-card">
+        <div class="card-title">Checkout</div>
+        <div class="card-row">
+          <div class="key">Total Price</div>
+          <div class="value">{{ cart.items_subtotal_price | money }}</div>
+        </div>
+        <div class="card-row">
+          <div class="key">Discount</div>
+          <div class="value">{{ cart.total_discount | money }}</div>
+        </div>
+        <div class="card-row">
+          <div class="key">Checkout Amount</div>
+          <div class="value">{{ cart.checkout_charge_amount | money }}</div>
+        </div>
+        <button class="btn btn-success checkout-button" type="submit" form="cart_form" name="checkout">Checkout</button>
+      </div>
+    </div>
   </div>
 
   <div class="modal" tabindex="-1" id="add-cart-modal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-          <div class="add-cart-message">Add to cart response</div>
+          <div class="modal-message">Add to cart response</div>
           <div class="message-icon">
             <i class="bi bi-check-circle" id="icon-success"></i>
             <i class="bi bi-x-circle failed" id="icon-failure"></i>

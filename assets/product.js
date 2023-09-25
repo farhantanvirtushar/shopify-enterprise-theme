@@ -73,7 +73,7 @@ $(document).ready(function () {
       data: $('form[action$="/cart/add"]').serialize(),
       dataType: 'json',
       success: function(data) {
-        $(".add-cart-message").text("Added To Cart");
+        $(".modal-message").text("Added To Cart");
         $("#icon-success").show();
         $("#icon-failure").hide();
         $('#add-cart-modal').modal('show');
@@ -92,7 +92,7 @@ $(document).ready(function () {
         console.log(data);
       },
       error: function(xhr, ajaxOptions, thrownError) {
-        $(".add-cart-message").text(JSON.parse(xhr.responseText).description);
+        $(".modal-message").text(JSON.parse(xhr.responseText).description);
         $("#icon-success").hide();
         $("#icon-failure").show();
         $('#add-cart-modal').modal('show');
