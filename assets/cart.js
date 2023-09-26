@@ -1,6 +1,8 @@
 $(document).ready(function () {
   $("#cart-modal").modal("hide");
 
+  updateCurrencyValue();
+
   $(".image-small").on("click", function () {
     $("#featured-image").attr("src", this.src);
   });
@@ -32,6 +34,12 @@ $(document).ready(function () {
     }
   });
 
+  function updateCurrencyValue() {
+    $(".currency-value").each(function () {
+      $(this).text(parseInt($(this).text())/100.0)
+    })
+  }
+
   function updateCart(id, quantity) {
     var cartItemId = "#cart_item_" + id.toString();
     $.ajax({
@@ -53,7 +61,18 @@ $(document).ready(function () {
         }
 
         updateCartItemCount(data.item_count);
-        console.log(data);
+        var items = data.items
+
+        console.log(data)
+        items.forEach(item => {
+          $("#price_"+item.id).text(item.final_line_price.toString())
+        });
+
+        $("#subtotal-price").text(data.items_subtotal_price)
+        $("#total-discount").text(data.total_discount)
+        $("#checkout-amount").text(data.total_price)
+        updateCurrencyValue();
+
       },
       error: function (xhr, ajaxOptions, thrownError) {
         $(".modal-message").text(JSON.parse(xhr.responseText).description);

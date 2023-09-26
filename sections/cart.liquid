@@ -21,7 +21,11 @@
                   <div class="row-group">
                     <div class="card-row">
                       <div style="margin-right: 1rem;">Total</div>
-                      <div class="value total-price">{{ item.final_line_price | money }}</div>
+                      <div class="value total-price">
+                        {{ cart.currency.symbol }}
+                        <span class="currency-value" id="price_{{item.id}}">{{ item.final_line_price }}</span>
+                        {{ cart.currency.iso_code }}
+                      </div>
                     </div>
                     <div class="input-row" style="margin: auto;">
                       <div class="input-button-group" value="{{item.id}}">
@@ -71,15 +75,27 @@
         <div class="card-title">Checkout</div>
         <div class="card-row">
           <div class="key">Total Price</div>
-          <div class="value">{{ cart.items_subtotal_price | money }}</div>
+          <div class="value">
+            {{ cart.currency.symbol }}
+            <span class="currency-value" id="subtotal-price">{{ cart.items_subtotal_price }}</span>
+            {{ cart.currency.iso_code }}
+          </div>
         </div>
         <div class="card-row">
           <div class="key">Discount</div>
-          <div class="value">{{ cart.total_discount | money }}</div>
+          <div class="value">
+            {{ cart.currency.symbol }}
+            <span class="currency-value" id="total-discount">{{ cart.total_discount }}</span>
+            {{ cart.currency.iso_code }}
+          </div>
         </div>
         <div class="card-row">
           <div class="key">Checkout Amount</div>
-          <div class="value">{{ cart.checkout_charge_amount | money }}</div>
+          <div class="value">
+            {{ cart.currency.symbol }}
+            <span class="currency-value" id="checkout-amount">{{ cart.total_price }}</span>
+            {{ cart.currency.iso_code }}
+          </div>
         </div>
         <button class="btn btn-success checkout-button" type="submit" form="cart_form" name="checkout">Checkout</button>
       </div>
