@@ -125,6 +125,11 @@
 .modal-footer {
   justify-content: center !important;
 }
+
+.loader {
+  padding-bottom: 2rem;
+}
+
 @media only screen and (max-width: 800px) {
   .featured-image-container {
     height: 14rem;

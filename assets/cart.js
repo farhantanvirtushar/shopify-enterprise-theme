@@ -1,5 +1,6 @@
 $(document).ready(function () {
   $("#cart-modal").modal("hide");
+  $("#spinner-modal").modal("hide");
 
   updateCurrencyValue();
 
@@ -41,6 +42,7 @@ $(document).ready(function () {
   }
 
   function updateCart(id, quantity) {
+    $("#spinner-modal").modal("show");
     var cartItemId = "#cart_item_" + id.toString();
     $.ajax({
       type: "POST",
@@ -51,9 +53,10 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (data) {
-        $(".modal-message").text("Item Removed From Cart");
+        $("#cart-modal-message").text("Updated Cart");
         $("#icon-success").show();
         $("#icon-failure").hide();
+        $("#spinner-modal").modal("hide");
         $("#cart-modal").modal("show");
 
         if (quantity === 0) {
@@ -75,9 +78,10 @@ $(document).ready(function () {
 
       },
       error: function (xhr, ajaxOptions, thrownError) {
-        $(".modal-message").text(JSON.parse(xhr.responseText).description);
+        $("#cart-modal-message").text(JSON.parse(xhr.responseText).description);
         $("#icon-success").hide();
         $("#icon-failure").show();
+        $("#spinner-modal").modal("hide");
         $("#cart-modal").modal("show");
 
         console.log(e);

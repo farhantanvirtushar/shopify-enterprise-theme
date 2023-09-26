@@ -106,7 +106,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-          <div class="modal-message">Add to cart response</div>
+          <div class="modal-message" id="cart-modal-message">Add to cart response</div>
           <div class="message-icon">
             <i class="bi bi-check-circle" id="icon-success"></i>
             <i class="bi bi-x-circle failed" id="icon-failure"></i>
@@ -114,6 +114,21 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="spinner-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="modal-message">Updating Cart</div>
+          <div class="loader">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

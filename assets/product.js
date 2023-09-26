@@ -1,5 +1,6 @@
 $(document).ready(function () {
   $('#add-cart-modal').modal('hide');
+  $("#spinner-modal").modal("hide");
   var variantName = "";
   var variantId = 0;
 
@@ -64,6 +65,7 @@ $(document).ready(function () {
   })
 
   $('#add-to-cart').on('click', function(event) {
+    $("#spinner-modal").modal("show");
     event.preventDefault(); // prevent default form submission
 
     
@@ -76,6 +78,7 @@ $(document).ready(function () {
         $(".modal-message").text("Added To Cart");
         $("#icon-success").show();
         $("#icon-failure").hide();
+        $("#spinner-modal").modal("hide");
         $('#add-cart-modal').modal('show');
 
 

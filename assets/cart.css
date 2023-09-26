@@ -82,6 +82,10 @@ a {
   padding: 1rem;
 }
 
+.loader {
+  padding-bottom: 2rem;
+}
+
 #icon-success {
   color: #32bd16;
 }
