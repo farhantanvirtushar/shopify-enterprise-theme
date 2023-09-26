@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="row-centered">
+    <div class="col-lg-4 col-md-6 col-12">
+      <h1 class="text-center">Log In</h1>
+
+      {% form 'customer_login' %}
+        {{ form.errors | default_errors }}
+
+        <div class="form-group mb-3">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            name="customer[email]"
+          >
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password" name="customer[password]">
+        </div>
+
+        <button type="submit" class="btn btn-primary container-fluid mb-3" value="Sign in">Log In</button>
+      {% endform %}
+
+      <p class="form-text text-muted mb-3 container text-center">Don't have an account?</p>
+      <a href="{{ routes.account_register_url }}" type="button" class="btn btn-danger container-fluid">Register</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Login",
+  "presets": [
+    {
+      "name": "Login"
+    }
+  ],
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color",
+      "default": "#33688C"
+    },
+
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color ",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}

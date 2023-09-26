@@ -7,6 +7,13 @@ body {
   top: 10 !important;
 }
 
+.row-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
 ::-webkit-scrollbar {
     height: 4px; 
     width: 8px;             
