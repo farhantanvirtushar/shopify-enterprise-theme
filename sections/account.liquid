@@ -16,7 +16,7 @@
                   <th scope="col">Order</th>
                   <th scope="col">Payment Status</th>
                   <th scope="col">Fulfillment Status</th>
-                  <th scope="col">Total</th>
+                  <th scope="col">Total ({{ cart.currency.iso_code }})</th>
                   <th scope="col">Details</th>
                 </tr>
               </thead>
@@ -26,11 +26,11 @@
                     <th scope="row">{{ order.name }}</th>
                     <td>{{ order.financial_status_label }}</td>
                     <td>{{ order.fulfillment_status_label }}</td>
-                    <td>{{ order.total_net_amount }}</td>
+                    <td class="currency-value">{{ order.total_net_amount }}</td>
                     <td>
-                      <button class="btn order-details" value="{{order.name}}">
+                      <a class="btn order-details" href="{{order.customer_url}}" value="{{order.name}}">
                         <i class="bi bi-box-arrow-up-right"></i>
-                      </button>
+                      </a>
                     </td>
                   </tr>
                 {% endfor %}
@@ -127,7 +127,7 @@
             {{ customer.default_address.zip }}
           </div>
         </div>
-        <button class="btn btn-success other-addresses">Show Other Addresses</button>
+        <a href="{{routes.account_addresses_url}}" class="btn btn-success other-addresses">Show Other Addresses</a>
       </div>
     </div>
   </div>

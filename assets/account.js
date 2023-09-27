@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  updateCurrencyValue();
   $(".page-index").each(function () {
     var pageIndex = $(this).attr("href");
     var queryParams = { ...Shopify.queryParams };
@@ -30,4 +31,10 @@ $(document).ready(function () {
       location.pathname + "?" + new URLSearchParams(queryParams).toString()
     );
   });
+
+  function updateCurrencyValue() {
+    $(".currency-value").each(function () {
+      $(this).text(parseInt($(this).text()) / 100.0);
+    });
+  }
 });
