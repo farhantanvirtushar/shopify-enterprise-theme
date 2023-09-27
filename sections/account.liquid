@@ -1,0 +1,167 @@
+{{ 'account.css' | asset_url | stylesheet_tag }}
+
+<div class="container-fluid">
+  <div class="title"><h1>Account</h1></div>
+
+  <div class="row" style="margin: auto;">
+    <div class="col-12 col-md-8 col-lg-9">
+      <div class="card">
+        <div class="card-title">Orders</div>
+
+        {% paginate customer.orders by 10 %}
+          <div class="table-container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Order</th>
+                  <th scope="col">Payment Status</th>
+                  <th scope="col">Fulfillment Status</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in customer.orders %}
+                  <tr>
+                    <th scope="row">{{ order.name }}</th>
+                    <td>{{ order.financial_status_label }}</td>
+                    <td>{{ order.fulfillment_status_label }}</td>
+                    <td>{{ order.total_net_amount }}</td>
+                    <td>
+                      <button class="btn order-details" value="{{order.name}}">
+                        <i class="bi bi-box-arrow-up-right"></i>
+                      </button>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pagination-container">
+            <nav aria-label="Page navigation">
+              <ul class="pagination justify-content-center">
+                <li class="page-item">
+                  <a class="page-link previous-page" href="{{current_page}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                {% assign totalPages = paginate.pages %}
+                {% for index in (1..totalPages) %}
+                  <li
+                    {% if index == current_page %}
+                      class="page-item active"
+                    {% else %}
+                      class="page-item"
+                    {% endif %}
+                  >
+                    <a class="page-link page-index" href="{{index}}">
+                      {{ index }}
+                    </a>
+                  </li>
+                {% endfor %}
+                <li class="page-item">
+                  <a class="page-link next-page" href="{{current_page}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        {% endpaginate %}
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4 col-lg-3">
+      <div class="card">
+        <div class="card-title">
+          {{ customer.name }}
+        </div>
+        <div class="card-subtitle">
+          {{ customer.email }}
+        </div>
+        <div class="card-row">
+          <div class="key">Phone</div>
+          <div class="value">
+            {{ customer.phone }}
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="key">Total Orders</div>
+          <div class="value">
+            {{ customer.orders_count }}
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="key">Total Spent</div>
+          <div class="value">
+            {{ cart.currency.symbol }}
+            {{ customer.total_spent }}
+            {{ cart.currency.iso_code }}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Address</div>
+
+        <div class="card-row">
+          <div class="key">Street</div>
+          <div class="value">{{ customer.default_address.street }}</div>
+        </div>
+
+        <div class="card-row">
+          <div class="key">City</div>
+          <div class="value">{{ customer.default_address.city }}</div>
+        </div>
+        <div class="card-row">
+          <div class="key">Province</div>
+          <div class="value">{{ customer.default_address.province }}</div>
+        </div>
+        <div class="card-row">
+          <div class="key">Country</div>
+          <div class="value">{{ customer.default_address.country.name }}</div>
+        </div>
+        <div class="card-row">
+          <div class="key">ZIP</div>
+          <div class="value">
+            {{ customer.default_address.zip }}
+          </div>
+        </div>
+        <button class="btn btn-success other-addresses">Show Other Addresses</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'account.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Acccount",
+  "presets": [
+    {
+      "name": "Account"
+    }
+  ],
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color",
+      "default": "#33688C"
+    },
+
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color ",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}
