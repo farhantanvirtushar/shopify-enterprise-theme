@@ -49,28 +49,47 @@
         </form>
       {% endif %}
     </div>
-    <a
-      href="/cart"
-      class="btn nav-button col-2 col-md-1  text-end mt-md-2 position-relative"
-      role="button"
-      aria-pressed="true"
-    >
-      <i class="bi bi-bag-fill"></i>
-      <span
-        class="position-absolute start-100 translate-middle badge rounded-pill bg-danger badge"
-        id="cart-item-count"
-      >
-        {{ cart.item_count }}
-        <span class="visually-hidden">unread messages</span>
-      </span>
-    </a>
-    <a
-      href="{{ routes.account_login_url }}"
-      class="btn nav-button col-2 col-md-1 text-start mt-md-2"
-      role="button"
-      aria-pressed="true"
-      ><i class="bi bi-person-fill"></i
-    ></a>
+    <div class="col-4 col-md-2 ">
+      <div class="nav-button-group">
+        <a
+          href="/cart"
+          class="btn nav-button   text-end mt-md-2"
+          role="button"
+          aria-pressed="true"
+        >
+          <i class="bi bi-bag-fill position-relative">
+            <span
+              class="position-absolute start-100 translate-middle badge rounded-pill bg-danger badge"
+              id="cart-item-count"
+            >
+              {{ cart.item_count }}
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </i>
+        </a>
+
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+            <a
+              href="{{ routes.account_url }}"
+              class="btn nav-button  text-start mt-md-2"
+              role="button"
+              aria-pressed="true"
+              ><i class="bi bi-person-fill"></i
+            ></a>
+
+          {% else %}
+            <a
+              href="{{ routes.account_login_url }}"
+              class="btn nav-button col-2 col-md-1 text-start mt-md-2"
+              role="button"
+              aria-pressed="true"
+              ><i class="bi bi-person-fill"></i
+            ></a>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
     <div class="search-bar d-md-none d-block col-12">
       {% if settings.show_search %}
         <form class="p-2 row" action="{{ routes.search_url }}">

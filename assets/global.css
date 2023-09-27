@@ -5,6 +5,7 @@ body {
 .badge {
   font-size: 0.8rem;
   top: 10 !important;
+  font-style: normal;
 }
 
 .row-centered {
