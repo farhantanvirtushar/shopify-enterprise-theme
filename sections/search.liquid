@@ -1,0 +1,134 @@
+{{ 'collection-products.css' | asset_url | stylesheet_tag }}
+<div class="title">
+  <h1>Search Results</h1>
+</div>
+
+<div class="products-header">
+  <div class="product-sort">
+    <div class="label">Sort By</div>
+    <select id="sort-by" class="form-select sort-option-select">
+      {% assign sort_by = search.sort_by | default: search.default_sort_by %}
+
+      {% for option in search.sort_options %}
+        <option
+          value="{{ option.value }}"
+          {% if option.value == sort_by %}
+            selected="selected"
+          {% endif %}
+        >
+          {{ option.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+  <div>
+    <button
+      class="btn btn-lg toggle-filter-button d-blcok d-md-none"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasFilters"
+      aria-controls="offcanvasFilters"
+    >
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFilters" aria-labelledby="offcanvasFiltersLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasFiltersLabel">Filters</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    {% render 'filters', collection: collection %}
+  </div>
+</div>
+
+<div class="row" style="margin: auto;">
+  <div class="col-md-2 d-none d-md-block">
+    {% render 'filters', collection: collection %}
+  </div>
+  <div class="col-12 col-md-10">
+    {% if search.performed %}
+      {% paginate search.results by section.settings.numOfProducts %}
+        <div class="products ">
+          {% for result in search.results %}
+            {% if result.object_type == 'page' %}
+              {% comment %}
+                <p>Page</p>
+                <a href="{{result.url}}"></a>
+              {% endcomment %}
+            {% elsif result.object_type == 'article' %}
+              {% comment %}
+                <p>Article :</p>
+                <a href="{{result.url}}">{{ result.title }}</a>
+              {% endcomment %}
+            {% elsif result.object_type == 'product' %}
+              <div class="product">
+                {% render 'product-card', product: result %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="pagination-container">
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+              <li class="page-item">
+                <a class="page-link previous-page" href="{{current_page}}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              {% assign totalPages = paginate.pages %}
+              {% for index in (1..totalPages) %}
+                <li
+                  {% if index == current_page %}
+                    class="page-item active"
+                  {% else %}
+                    class="page-item"
+                  {% endif %}
+                >
+                  <a class="page-link page-index" href="{{index}}">
+                    {{ index }}
+                  </a>
+                </li>
+              {% endfor %}
+              <li class="page-item">
+                <a class="page-link next-page" href="{{current_page}}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      {% endpaginate %}
+    {% else %}
+      <h1>Try searching for something</h1>
+    {% endif %}
+  </div>
+</div>
+
+<style></style>
+
+<script src="{{ 'collection-products.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'filters.js' | asset_url }}" defer="defer"></script>
+<script></script>
+
+{% schema %}
+{
+  "name": "Products By Collection",
+  "presets": [
+    {
+      "name": "Products By Collection"
+    }
+  ],
+  "settings": [
+    {
+      "type": "number",
+      "id": "numOfProducts",
+      "label": "Number of Products Per Page",
+      "default": 12
+    }
+  ]
+}
+{% endschema %}
