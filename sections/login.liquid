@@ -1,9 +1,9 @@
 <div class="container-fluid">
-  <div class="title">
-    <h1>Log In</h1>
-  </div>
   <div class="row-centered">
     <div class="col-lg-4 col-md-6 col-12" id="login-form">
+      <div class="title">
+        <h1>Log In</h1>
+      </div>
       {% form 'customer_login' %}
         {{ form.errors | default_errors }}
 
@@ -32,8 +32,10 @@
       <a href="{{ routes.account_register_url }}" type="button" class="btn btn-danger container-fluid">Register</a>
     </div>
     <div class="col-lg-4 col-md-6 col-12" style="display: none;" id="recovery-form">
-      <h1 class="text-center">Reset Your Password</h1>
-      <div class="fs-6 fw-light text-center mb-3">We will send you an email to reset your password</div>
+      <div class="title">
+        <h2>Reset Your Password</h2>
+        <div class="fs-6 fw-light text-center mb-3">We will send you an email to reset your password</div>
+      </div>
       {% form 'recover_customer_password' %}
         {{ form.errors | default_errors }}
 
