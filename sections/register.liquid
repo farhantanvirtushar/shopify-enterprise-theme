@@ -1,8 +1,9 @@
 <div class="container-fluid">
+  <div class="title">
+    <h1>Sign Up</h1>
+  </div>
   <div class="row-centered">
     <div class="col-lg-4 col-md-6 col-12">
-      <h1 class="text-center">Sign Up</h1>
-
       {% form 'create_customer' %}
         {{ form.errors | default_errors }}
 

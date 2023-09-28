@@ -1,8 +1,9 @@
 <div class="container-fluid">
+  <div class="title">
+    <h1>Log In</h1>
+  </div>
   <div class="row-centered">
     <div class="col-lg-4 col-md-6 col-12" id="login-form">
-      <h1 class="text-center">Log In</h1>
-
       {% form 'customer_login' %}
         {{ form.errors | default_errors }}
 
