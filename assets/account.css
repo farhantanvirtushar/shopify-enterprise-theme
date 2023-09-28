@@ -67,3 +67,8 @@
 .pagination-container {
   padding: 2rem 0 2rem;
 }
+
+
+table a {
+  color: inherit;
+}

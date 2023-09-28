@@ -23,7 +23,7 @@
               <tbody>
                 {% for order in customer.orders %}
                   <tr>
-                    <th scope="row">{{ order.name }}</th>
+                    <th scope="row">{{ order.name | link_to: order.customer_url }}</th>
                     <td>{{ order.financial_status_label }}</td>
                     <td>{{ order.fulfillment_status_label }}</td>
                     <td class="currency-value">{{ order.total_net_amount }}</td>
