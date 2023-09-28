@@ -1,0 +1,10 @@
+{
+    "sections": {
+      "order": {
+        "type": "order"
+      }
+    },
+    "order": ["order"]
+}
+  
+  

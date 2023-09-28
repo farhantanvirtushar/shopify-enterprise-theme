@@ -1,0 +1,146 @@
+{{ 'order.css' | asset_url | stylesheet_tag }}
+
+<div class="container-fluid">
+  <div class="title">
+    <h1>Order {{ order.name }}</h1>
+  </div>
+
+  <div class="row" style="margin: auto;">
+    <div class="col-12 col-md-6 col-lg-7">
+      {% for item in order.line_items %}
+        <div class="order-item" id="order_item_{{item.id}}">
+          <div class="row" style="margin: auto;">
+            <div class="col-5 col-md-3">
+              <div class="image-container">
+                <img class="product-image" src="{{item.image | image_url}}" alt="">
+              </div>
+            </div>
+            <div class="col-7 col-md-9">
+              <div class="item-title">{{ item.title | link_to: item.url }}</div>
+              <p>{{ item.price | money }}</p>
+              <div class="card-row">
+                <div style="margin-right: 1rem;">Quantity</div>
+                <div class="value">
+                  {{ item.quantity }}
+                </div>
+              </div>
+              <div class="card-row">
+                <div style="margin-right: 1rem;">Total</div>
+                <div class="value total-price">
+                  {{ cart.currency.symbol }}
+                  <span class="currency-value" id="price_{{item.id}}">{{ item.final_line_price }}</span>
+                  {{ cart.currency.iso_code }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-5">
+      <div class="card">
+        <div class="card-title">Payment Summary</div>
+        <div class="card-row">
+          <div class="key">Subtotal</div>
+          <div class="value">
+            {{ cart.currency.symbol }}
+            <span class="currency-value" id="subtotal-price">{{ order.line_items_subtotal_price }}</span>
+            {{ cart.currency.iso_code }}
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="key">Discount</div>
+          <div class="value">
+            {{ cart.currency.symbol }}
+            <span class="currency-value" id="total-discount">{{ order.total_discounts }}</span>
+            {{ cart.currency.iso_code }}
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="key">Shipping Price</div>
+          <div class="value">
+            {{ cart.currency.symbol }}
+            <span class="currency-value" id="total-discount">{{ order.shipping_price }}</span>
+            {{ cart.currency.iso_code }}
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="key">Tax</div>
+          <div class="value">
+            {{ cart.currency.symbol }}
+            <span class="currency-value" id="checkout-amount">{{ order.tax_price }}</span>
+            {{ cart.currency.iso_code }}
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="key">Total</div>
+          <div class="value">
+            {{ cart.currency.symbol }}
+            <span class="currency-value" id="checkout-amount">{{ order.total_price }}</span>
+            {{ cart.currency.iso_code }}
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Billing Address</div>
+        <div class="card-row">
+          <div class="key">Street</div>
+          <div class="value">{{ order.billing_address.street }}</div>
+        </div>
+
+        <div class="card-row">
+          <div class="key">City</div>
+          <div class="value">{{ order.billing_address.city }}</div>
+        </div>
+        <div class="card-row">
+          <div class="key">Province</div>
+          <div class="value">{{ order.billing_address.province }}</div>
+        </div>
+        <div class="card-row">
+          <div class="key">Country</div>
+          <div class="value">{{ order.billing_address.country.name }}</div>
+        </div>
+        <div class="card-row">
+          <div class="key">ZIP</div>
+          <div class="value">
+            {{ order.billing_address.zip }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style></style>
+
+<script src="{{ 'currency-value-update.js' | asset_url }}" defer="defer"></script>
+
+<script></script>
+
+{% schema %}
+{
+  "name": "Order Details",
+  "presets": [
+    {
+      "name": "Order Details"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color",
+      "default": "#33688C"
+    },
+
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color ",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}
