@@ -23,7 +23,8 @@
       <div class="price" id="price">{{ product.price | money }}</div>
 
       <div class="options">
-        {% if product.options.size > 0 -%}
+        {% assign totalVariants = product.variants | size %}
+        {% if totalVariants > 1 -%}
           {% for option in product.options -%}
             <div class="option-name">{{ option }}</div>
             <div class="button-group">
