@@ -58,7 +58,7 @@
     {% render 'filters', collection: collection %}
   </div>
   <div class="col-12 col-md-10">
-    {% paginate collection.products by 4 %}
+    {% paginate collection.products by section.settings.numOfProducts %}
       <div class="products ">
         {% for product in collection.products %}
           <div class="product">
@@ -117,22 +117,10 @@
   ],
   "settings": [
     {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "color",
-      "id": "bg",
-      "label": "Background Color",
-      "default": "#33688C"
-    },
-
-    {
-      "type": "color",
-      "id": "color",
-      "label": "Text Color ",
-      "default": "#FFFFFF"
+      "type": "number",
+      "id": "numOfProducts",
+      "label": "Number of Products Per Page",
+      "default": 12
     }
   ]
 }
