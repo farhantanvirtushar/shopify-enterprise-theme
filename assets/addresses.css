@@ -1,5 +1,9 @@
 .title {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-align: start;
+  width: fit-content;
 }
 .action-bar {
   display: flex;
