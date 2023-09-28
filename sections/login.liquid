@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row-centered">
-    <div class="col-lg-4 col-md-6 col-12">
+    <div class="col-lg-4 col-md-6 col-12" id="login-form">
       <h1 class="text-center">Log In</h1>
 
       {% form 'customer_login' %}
@@ -21,6 +21,7 @@
         <div class="form-floating mb-3">
           <input type="password" class="form-control" id="password" placeholder="Password" name="customer[password]">
           <label for="password">Password</label>
+          <a href="#" class="link forgot-password">Forgot your password?</a>
         </div>
 
         <button type="submit" class="btn btn-primary container-fluid mb-3" value="Sign in">Log In</button>
@@ -29,8 +30,33 @@
       <p class="form-text text-muted mb-3 container text-center">Don't have an account?</p>
       <a href="{{ routes.account_register_url }}" type="button" class="btn btn-danger container-fluid">Register</a>
     </div>
+    <div class="col-lg-4 col-md-6 col-12" style="display: none;" id="recovery-form">
+      <h1 class="text-center">Reset Your Password</h1>
+      <div class="fs-6 fw-light text-center mb-3">We will send you an email to reset your password</div>
+      {% form 'recover_customer_password' %}
+        {{ form.errors | default_errors }}
+
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            name="email"
+          >
+          <label for="email">Email address</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary container-fluid mb-3" value="Submit">Submit</button>
+      {% endform %}
+
+      <button type="button" class="btn btn-danger container-fluid cancel-recovery">Cancel</button>
+    </div>
   </div>
 </div>
+
+<script src="{{ 'login.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {

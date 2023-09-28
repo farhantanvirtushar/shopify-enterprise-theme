@@ -1,0 +1,59 @@
+<div class="container-fluid">
+  <div class="row-centered">
+    <div class="col-lg-4 col-md-6 col-12">
+      <h1 class="text-center">Reset Password</h1>
+
+      {% form 'reset_customer_password' %}
+        {{ form.errors | default_errors }}
+
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="password" placeholder="Password" name="customer[password]">
+          <label for="password">Password</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="password_confirmation"
+            placeholder="Confirm Password"
+            name="customer[password_confirmation]"
+          >
+          <label for="password_confirmation">Confirm Password</label>
+        </div>
+
+        <button type="submit" class="btn btn-danger container-fluid mb-3" value="Reset Password">Reset Password</button>
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Account Revocery",
+  "presets": [
+    {
+      "name": "Account Revocery"
+    }
+  ],
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color",
+      "default": "#33688C"
+    },
+
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color ",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}
