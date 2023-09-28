@@ -1,0 +1,106 @@
+{{ 'addresses.css' | asset_url | stylesheet_tag }}
+
+<div class="container">
+  <div class="action-bar">
+    <div class="title">
+      <h1>Addresses</h1>
+    </div>
+    <button type="button" class="btn btn-primary" id="add-new-address">
+      <i class="bi bi-plus-circle icon"></i>Add New
+    </button>
+  </div>
+
+  <div class="row" style="margin: auto;">
+    <div class="col-12 ">
+      {% for address in customer.addresses %}
+        <div class="card">
+          <div class="card-action-bar">
+            <a
+              class="btn btn-success  me-1"
+              value="{{address.id}}"
+              type="button"
+              id="address_{{address.id}}"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </a>
+            <a
+              class="btn btn-danger  "
+              value="{{address.id}}"
+              type="button"
+              id="address_{{address.id}}"
+            >
+              <i class="bi bi-trash3-fill"></i>
+            </a>
+          </div>
+          <div class="card-title">{{ address.name }}</div>
+          <div class="card-row">
+            <div class="key">Street</div>
+            <div class="value">{{ address.street }}</div>
+          </div>
+
+          <div class="card-row">
+            <div class="key">City</div>
+            <div class="value">{{ address.city }}</div>
+          </div>
+          <div class="card-row">
+            <div class="key">Province</div>
+            <div class="value">{{ address.province }}</div>
+          </div>
+          <div class="card-row">
+            <div class="key">Country</div>
+            <div class="value">{{ address.country.name }}</div>
+          </div>
+          <div class="card-row">
+            <div class="key">ZIP</div>
+            <div class="value">
+              {{ address.zip }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="new-address">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          {% render 'new-address-form', customer: customer %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style></style>
+
+<script src="{{ 'addresses.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Order Details",
+  "presets": [
+    {
+      "name": "Order Details"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color",
+      "default": "#33688C"
+    },
+
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color ",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}
