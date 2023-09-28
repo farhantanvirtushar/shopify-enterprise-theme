@@ -1,0 +1,63 @@
+{{ 'page.css' | asset_url | stylesheet_tag }}
+{{ 'contact.css' | asset_url | stylesheet_tag }}
+<div class="container">
+  <div class="row-centered">
+    <div class="col-lg-4 col-md-6 col-12">
+      {% form 'contact' %}
+        {{ form.errors | default_errors }}
+
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="first_name"
+                placeholder="First Name"
+                name="contact[first_name]"
+              >
+              <label for="first_name">First Name</label>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="last_name" placeholder="Last Name" name="contact[last_name]">
+              <label for="last_name">Last Name</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            name="contact[email]"
+          >
+          <label for="email">Email Address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea class="form-control" type="text" id="body" name="contact[body]" id="message"></textarea>
+
+          <label for="body">Message</label>
+        </div>
+
+        <button type="submit" class="btn btn-danger container-fluid mb-3" value="Create">Send</button>
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact",
+  "presets": [
+    {
+      "name": "contact-page"
+    }
+  ],
+  "settings": []
+}
+{% endschema %}
