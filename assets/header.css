@@ -26,7 +26,12 @@
 .brand {
   font-size: 2rem;
   box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+}
 
+.brand:hover {
+  color: inherit;
 }
 
 .dropdown-button {
