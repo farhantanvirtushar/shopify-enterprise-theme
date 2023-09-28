@@ -15,24 +15,35 @@
       {% for address in customer.addresses %}
         <div class="card">
           <div class="card-action-bar">
-            <a
-              class="btn btn-success  me-1"
+            <button
+              class="btn btn-success  me-1 edit-address"
               value="{{address.id}}"
               type="button"
-              id="address_{{address.id}}"
+              id="edit_{{address.id}}"
             >
               <i class="bi bi-pencil-square"></i>
-            </a>
-            <a
-              class="btn btn-danger  "
-              value="{{address.id}}"
-              type="button"
-              id="address_{{address.id}}"
+            </button>
+
+            <form
+              class="address-delete-form"
+              method="post"
+              action="/account/addresses/{{ address.id }}"
             >
-              <i class="bi bi-trash3-fill"></i>
-            </a>
+              <input type="hidden" name="_method" value="delete">
+              <button
+                class="btn btn-danger  "
+                type="submit"
+                id="address_{{address.id}}"
+              >
+                <i class="bi bi-trash3-fill"></i>
+              </button>
+            </form>
           </div>
           <div class="card-title">{{ address.name }}</div>
+          <div class="card-row">
+            <div class="key">Phone</div>
+            <div class="value">{{ address.phone }}</div>
+          </div>
           <div class="card-row">
             <div class="key">Street</div>
             <div class="value">{{ address.street }}</div>
@@ -54,6 +65,19 @@
             <div class="key">ZIP</div>
             <div class="value">
               {{ address.zip }}
+            </div>
+          </div>
+        </div>
+
+        <div class="modal" tabindex="-1" id="edit_address_{{address.id}}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                {% render 'edit-address-form', address: address %}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+              </div>
             </div>
           </div>
         </div>

@@ -10,6 +10,9 @@
 .icon {
   padding-right: 1rem;
 }
+.address-delete-form {
+  margin: 0;
+}
 .order-item {
   margin-bottom: 2rem;
   padding: 0.8rem;
