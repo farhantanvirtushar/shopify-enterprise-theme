@@ -63,6 +63,9 @@
   box-sizing: border-box;
 }
 
+.icon-button-text{ 
+  font-style: normal;
+}
 a:link {
   text-decoration: none;
 }

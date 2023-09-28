@@ -123,6 +123,18 @@
             <a class="link" href="{{link.url}}">{{ link.title }}</a>
           </div>
         {%- endfor %}
+
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+            <div class="side-nav-link">
+              <a
+                href="{{ routes.account_logout_url }}"
+                class="link"
+                ><i class="bi bi-box-arrow-right"> <span class="icon-button-text">Logout</span></i></a
+              >
+            </div>
+          {% endif %}
+        {% endif %}
       </div>
     </div>
   </div>
@@ -132,6 +144,18 @@
         <a class="link" href="{{link.url}}">{{ link.title }}</a>
       </div>
     {%- endfor %}
+
+    {% if shop.customer_accounts_enabled %}
+      {% if customer %}
+        <div class="nav-link">
+          <a
+            href="{{ routes.account_logout_url }}"
+            class="link"
+            ><i class="bi bi-box-arrow-right"> <span class="icon-button-text">Logout</span></i></a
+          >
+        </div>
+      {% endif %}
+    {% endif %}
   </div>
 </div>
 
