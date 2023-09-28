@@ -1,4 +1,9 @@
+HTML {
+  cursor: pointer;
+}
+
 body {
+  cursor: default;
   width: 100%;
 }
 
@@ -12,6 +17,7 @@ body {
   width: 100%;
   text-align: center;
   padding: 3rem;
+
 }
 .row-centered {
   display: flex;
@@ -22,18 +28,22 @@ body {
 ::-webkit-scrollbar {
   height: 4px;
   width: 8px;
+  cursor: pointer !important;
 }
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
+  cursor: pointer !important;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #888;
+  cursor: pointer !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+  cursor: pointer !important;
 }
 
 /* Chrome, Safari, Edge, Opera */

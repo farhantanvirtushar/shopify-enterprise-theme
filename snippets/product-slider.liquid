@@ -1,4 +1,3 @@
-{{ 'item-slider.css' | asset_url | stylesheet_tag }}
 <div class="items-row">
   {% if maxItem %}
     {% for product in productList limit: maxItem %}
