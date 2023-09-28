@@ -1,6 +1,12 @@
 {{ 'item-slider.css' | asset_url | stylesheet_tag }}
 <div class="items-row">
-  {% for product in productList %}
-    {% render 'product-card', product: product %}
-  {% endfor %}
+  {% if maxItem %}
+    {% for product in productList limit: maxItem %}
+      {% render 'product-card', product: product %}
+    {% endfor %}
+  {% else %}
+    {% for product in productList %}
+      {% render 'product-card', product: product %}
+    {% endfor %}
+  {% endif %}
 </div>

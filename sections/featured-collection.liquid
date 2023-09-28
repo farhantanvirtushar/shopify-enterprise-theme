@@ -4,7 +4,10 @@
     {{ section.settings.collection.title }}
   </div>
 
-  {% render 'product-slider', productList: section.settings.collection.products %}
+  {% render 'product-slider',
+    productList: section.settings.collection.products,
+    maxItem: section.settings.numOfProducts
+  %}
 </div>
 
 <style></style>
@@ -22,6 +25,12 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection"
+    },
+    {
+      "type": "number",
+      "id": "numOfProducts",
+      "label": "Maximum Number of Products",
+      "default": 5
     },
     {
       "type": "color",
