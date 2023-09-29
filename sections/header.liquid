@@ -114,14 +114,20 @@
       aria-labelledby="offcanvasMainMenuLabel"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasMainMenuLabel">{{ shop.name }}</h5>
+        <h1 class="offcanvas-title" id="offcanvasMainMenuLabel">{{ shop.name }}</h1>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         {% for link in linklists['main-menu'].links -%}
-          <div class="side-nav-link">
-            <a class="link" href="{{link.url}}">{{ link.title }}</a>
-          </div>
+          {% if link.levels == 0 %}
+            <div class="side-nav-link">
+              <a class="link" href="{{link.url}}">{{ link.title }}</a>
+            </div>
+          {% else %}
+            <div class="side-nav-link">
+              {% render 'menu-item-dropdown', link: link, dropdownStyle: 'dropdown' %}
+            </div>
+          {% endif %}
         {%- endfor %}
 
         {% if shop.customer_accounts_enabled %}
@@ -140,9 +146,13 @@
   </div>
   <div class="bottom-section d-md-flex d-none">
     {% for link in linklists['main-menu'].links -%}
-      <div class="nav-link">
-        <a class="link" href="{{link.url}}">{{ link.title }}</a>
-      </div>
+      {% if link.levels == 0 %}
+        <div class="nav-link">
+          <a class="link" href="{{link.url}}">{{ link.title }}</a>
+        </div>
+      {% else %}
+        {% render 'menu-item-dropdown', link: link, dropdownStyle: 'dropdown' %}
+      {% endif %}
     {%- endfor %}
 
     {% if shop.customer_accounts_enabled %}

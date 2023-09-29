@@ -1,18 +1,30 @@
 function updateCartItemCount(count) {
-    $("#cart-item-count").text(count.toString())
+  $("#cart-item-count").text(count.toString());
 }
 
 function getCartItemCount() {
-    return parseInt($("#cart-item-count").text())
+  return parseInt($("#cart-item-count").text());
 }
 
 $(document).ready(function () {
+  $(".dropdown-toggle").each(function () {
+    $(this).click(function (e) {
+      var subMenuDisplay = $(this).next().css("display");
 
-    function updateCartItemCount(count) {
-        $("#cart-item-count").text(count.toString())
-    }
+      if (subMenuDisplay === "none") {
+        $(this).next().css("display", "block");
+      } else {
+        $(this).next().css("display", "none");
+      }
+    });
+  });
 
-    function getCartItemCount() {
-        return parseInt($("#cart-item-count").text())
-    }
+  
+  function updateCartItemCount(count) {
+    $("#cart-item-count").text(count.toString());
+  }
+
+  function getCartItemCount() {
+    return parseInt($("#cart-item-count").text());
+  }
 });

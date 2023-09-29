@@ -41,6 +41,9 @@
   padding: 10px;
 }
 
+.offcanvas-body {
+  font-size: 1.5rem !important;
+}
 
 .search-input {
   padding: 10px;
@@ -83,6 +86,7 @@ a:link {
   padding: 5px;
   margin: 0 5px 0;
   box-sizing: border-box;
+  border-bottom: 1px solid #000000;
 }
 
 .side-nav-link a {

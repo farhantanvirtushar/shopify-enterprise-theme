@@ -1,0 +1,24 @@
+<div class=" {{dropdownStyle}} ">
+  <button
+    class="dropdown-button dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton_{{link.title}}"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    {{ link.title }}
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton_{{link.title}}">
+    {% for sublink in link.links %}
+      {% if sublink.levels == 0 %}
+        <li>
+          <a class="dropdown-item" href="{{sublink.url}}"> {{ sublink.title }} </a>
+        </li>
+      {% else %}
+        <li>
+          <div class="dropdown-item">{% render 'menu-item-dropdown', link: sublink, dropdownStyle: 'dropend' %}</div>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
