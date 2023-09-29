@@ -1,0 +1,146 @@
+{{ 'footer.css' | asset_url | stylesheet_tag }}
+
+<div class="footer">
+  <div class="row" style="margin: auto;">
+    <div class="col-12 col-md-4">
+      <div class="footer-brand">
+        {{ shop.name }}
+      </div>
+      <div class="description">
+        {{ section.settings.description }}
+      </div>
+      <div class="form-container">
+        {% if localization.available_countries.size > 1 %}
+          {% form 'localization', id: 'localization-form' %}
+            <select class="form-select" id="country-select" aria-label="Default select example">
+              {% for country in localization.available_countries %}
+                <option
+                  {% if country.iso_code == localization.country.iso_code %}
+                    selected
+                  {% endif %}
+                  value="{{ country.iso_code }}"
+                >
+                  {{ country.name }} ({{ country.currency.iso_code -}}
+                  {{- country.currency.symbol }})
+                </option>
+              {% endfor %}
+            </select>
+            <input type="hidden" name="country_code" id="country-code" value="{{ localization.country.iso_code }}">
+          {% endform %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-12 col-md-2">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFirstGroup">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseFirstGroup"
+            aria-expanded="true"
+            aria-controls="collapseFirstGroup"
+          >
+            {{ section.settings.firstGroup.title }}
+          </button>
+        </h2>
+        <div
+          id="collapseFirstGroup"
+          class="accordion-collapse collapse show"
+          aria-labelledby="headingFirstGroup"
+        >
+          <div class="accordion-body expand">
+            {% for link in section.settings.firstGroup.links %}
+              <div class="link-container">
+                <a class="footer-link" href="{{link.url}}"> {{ link.title }} </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-2">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSecondGroup">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseSecondGroup"
+            aria-expanded="true"
+            aria-controls="collapseSecondGroup"
+          >
+            {{ section.settings.secondGroup.title }}
+          </button>
+        </h2>
+        <div
+          id="collapseSecondGroup"
+          class="accordion-collapse collapse show"
+          aria-labelledby="headingSecondGroup"
+        >
+          <div class="accordion-body expand">
+            {% for link in section.settings.secondGroup.links %}
+              <div class="link-container">
+                <a class="footer-link" href="{{link.url}}"> {{ link.title }} </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4"></div>
+  </div>
+</div>
+
+<script src="{{ 'footer.js' | asset_url }}" defer="defer"></script>
+<style>
+  .footer {
+    background-color: {{section.settings.bg}};
+    color: {{section.settings.color}};
+  }
+  .footer-brand{
+    color: {{section.settings.brandColor}};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color Footer",
+      "default": "#313131"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color Footer",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "brandColor",
+      "label": "Brand Color",
+      "default": "#4d51e5"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Brand Description",
+      "default": "This is a demo description"
+    },
+    {
+      "type": "link_list",
+      "id": "firstGroup",
+      "label": "Page Links Group 1"
+    },
+    {
+      "type": "link_list",
+      "id": "secondGroup",
+      "label": "Page Links Group 2"
+    }
+  ]
+}
+{% endschema %}
