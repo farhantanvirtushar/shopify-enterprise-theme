@@ -40,6 +40,9 @@
   border-color: #4e4e4e;
 }
 
+.soldout {
+  margin: 0.5rem;
+}
 .image-small {
   height: 100%;
 }

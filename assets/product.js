@@ -41,6 +41,12 @@ $(document).ready(function () {
 
         $("#featured-image").attr("src", variant.featured_image.src);
     }
+
+    if(!variant.available) {
+      $("#soldout").css('display', 'block');
+    } else {
+      $("#soldout").css('display', 'none');
+    }
     
     $("#price").text(variant.price)
     

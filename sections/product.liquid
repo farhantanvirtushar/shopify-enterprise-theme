@@ -20,6 +20,17 @@
       <div class="title">
         <h1>{{ product.title }}</h1>
       </div>
+
+      <div
+        class="soldout"
+        id="soldout"
+        {% if product.available == true %}
+          style="display: none;"
+        {% endif %}
+      >
+        <span class="badge bg-danger">Sold Out</span>
+      </div>
+
       <div class="price" id="price">{{ product.price | money }}</div>
 
       <div class="options">
