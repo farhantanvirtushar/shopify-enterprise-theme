@@ -104,6 +104,7 @@ $(document).ready(function () {
         $(".modal-message").text(JSON.parse(xhr.responseText).description);
         $("#icon-success").hide();
         $("#icon-failure").show();
+        $("#spinner-modal").modal("hide");
         $('#add-cart-modal').modal('show');
 
         console.log(e);
