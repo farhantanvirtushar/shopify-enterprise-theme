@@ -1,6 +1,9 @@
+.footer {
+    margin-top: 5rem;
+}
 .footer-brand {
   padding: 1rem;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 .description {
   padding: 1rem;
@@ -51,4 +54,17 @@
 .footer-link, .footer-link:hover {
     color: inherit;
 
+}
+
+.last-col {
+    padding: 2rem;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.newsletter-form-container {
+    color: black;
+    padding: 1rem;
 }
