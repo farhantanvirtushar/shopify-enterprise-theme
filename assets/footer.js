@@ -8,15 +8,8 @@ $(document).ready(function () {
   });
 
 
-  $(window).on("resize", function () {
-    var win = $(this); //this = window
-    toggleCollapse(win.width());
-    
-  });
-
-
   toggleCollapse($( window ).width());
-  
+
   function toggleCollapse (width) {
     if (width < 800) {
         $(".collapse").each(function () {
